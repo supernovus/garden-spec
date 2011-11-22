@@ -7,7 +7,7 @@ a very flexible, extensible syntax, with minimal constructs.
 
 Instead of using traditional conditional blocks where there is a lot of
 programming logic in the template, it uses simple conditional statements
-that leaves most logic in the controller, and shows a sub-template based on
+that leaves most logic in the controller, and shows a template based on
 if the variable or method returned true or false. So instead of:
 
   A bunch of stuff here, yada yada.
@@ -19,7 +19,7 @@ if the variable or method returned true or false. So instead of:
   Some more stuff.
 
 In Garden, you would have an object method that performs the logical test,
-(in the example below we called the method .mytest) and apply sub templates
+(in the example below we called the method .mytest) and apply templates
 based on the result:
 
   myTemplate (object) {{
@@ -31,7 +31,7 @@ based on the result:
   showTrue  () {{ The test passed. }}
   showFalse () {{ The test failed. }}
 
-Similarly, there is no direct loop constructs. Instead we apply a sub-template
+Similarly, there is no direct loop constructs. Instead we apply a template
 to each item in a list (or to the keys/values in a hash.)
 There are plenty of template languages where you see things like this:
 
@@ -50,14 +50,6 @@ This instead would be done like this in Garden:
   }}
 
   listItem (item) {{ <li>[[item]]</li> }}
-
-Or using anonymous templates:
-
-  myList (array) {{
-  <ul>
-  [[array:(*item){<li>[[item]]</li>}]]
-  </ul>
-  }}
 
 These are just a few examples of what makes Garden different.
 
