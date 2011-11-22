@@ -58,7 +58,11 @@ on a per-file basis. So if you want your variables to look like $this$ you can.
 
 Read the spec for full details.
 
-This repository contains the spec in HTML format, the Garden template files
-used to build the spec, and the script used to compile the source into HTML.
-The script requires the Perl 5 implementation of Garden to function.
+This repository contains the Garden template files used to build the spec, 
+and the script used to compile the source into HTML. The script requires the 
+Perl 5 implementation of Garden to function.
+
+For a pre-compiled web page version of the specification, see:
+
+http://supernovus.github.com/garden/
 
