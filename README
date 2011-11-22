@@ -1,0 +1,72 @@
+Garden: A Functional Template Language
+-----------------------------------------
+
+Garden is a functional template language, designed to be language-neutral,
+and easy to work with. It is inspired by StringTemplate and Flower, and offers
+a very flexible, extensible syntax, with minimal constructs.
+
+Instead of using traditional conditional blocks where there is a lot of
+programming logic in the template, it uses simple conditional statements
+that leaves most logic in the controller, and shows a sub-template based on
+if the variable or method returned true or false. So instead of:
+
+  A bunch of stuff here, yada yada.
+  <%if ($this and $that) or $somethingelse): %>
+    The test passed.
+  <%else%>
+    The test failed.
+  <%endif;%>
+  Some more stuff.
+
+In Garden, you would have an object method that performs the logical test,
+(in the example below we called the method .mytest) and apply sub templates
+based on the result:
+
+  myTemplate (object) {{
+  A bunch of stuff here, yada yada.
+  [[?object.mytest:showTrue();showFalse()]]
+  Some more stuff.
+  }}
+
+  showTrue  () {{ The test passed. }}
+  showFalse () {{ The test failed. }}
+
+Similarly, there is no direct loop constructs. Instead we apply a sub-template
+to each item in a list (or to the keys/values in a hash.)
+There are plenty of template languages where you see things like this:
+
+  <ul>
+  <%foreach $array as $item:%>
+  <li><%=$item%></li>
+  <%endforeach;%>
+  </ul>
+
+This instead would be done like this in Garden:
+
+  myList (array) {{
+  <ul>
+  [[array:listItem(*item)]]
+  </ul>
+  }}
+
+  listItem (item) {{ <li>[[item]]</li> }}
+
+Or using anonymous templates:
+
+  myList (array) {{
+  <ul>
+  [[array:(*item){<li>[[item]]</li>}]]
+  </ul>
+  }}
+
+These are just a few examples of what makes Garden different.
+
+Oh, and a lot of the syntax, such as the {{, }}, [[, ]] symbols, is overridable
+on a per-file basis. So if you want your variables to look like $this$ you can.
+
+Read the spec for full details.
+
+This repository contains the spec in HTML format, the Garden template files
+used to build the spec, and the script used to compile the source into HTML.
+The script requires the Perl 5 implementation of Garden to function.
+
