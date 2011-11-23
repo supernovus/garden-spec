@@ -1,12 +1,33 @@
 import "common" :export
 
-page {[
-  "name":"Table of Contents",
+mypage {[
+  "name" : "Table of Contents"
 ]}
 
-content () {{
-<p>
-This is a work in progress.
-</p>
+index (sections) {{
+[[Layout(title=mypage.name, content=tableOfContents(sections))]]
 }}
+
+tableOfContents (sections) {{
+<ul>
+[[sections:sectionItem(*section)]]
+</ul>
+}}
+
+sectionItem (section) {{
+<li>[[section.name]]
+<ul>
+[[section.pages:pageItem(*page)]]
+</ul>
+</li>
+}}
+
+pageItem (page) {{
+<li>
+[[?page.file:fileLink(page);urlLink(page)]]
+</li>
+}}
+
+fileLink (page) {{ <a href="[[page.file]].html" title="Since [[page.spec]]">[[page.name]]</a> }}
+urlLink  (page) {{ <a href="[[page.link]]" title="[[page.desc]]">[[page.name]]</a> }}
 
