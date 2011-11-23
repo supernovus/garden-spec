@@ -5,15 +5,16 @@
       { "file" : "vars",        "name" : "Variables",          "spec" : 1 },
       { "file" : "methods",     "name" : "Method calls",       "spec" : 1 },
       { "file" : "templates",   "name" : "Nested Templates",   "spec" : 1 },
+      { "file" : "dicts",       "name" : "Dictionaries",       "spec" : 1 },
       { "file" : "apply",       "name" : "Applying Templates", "spec" : 1 },
       { "file" : "conditional", "name" : "Conditionals",       "spec" : 1 },
-      { "file" : "imports",     "name" : "Importation",        "spec" : 1 },
       { "file" : "syntax",      "name" : "Overriding Syntax",  "spec" : 1 }
     ]
   },
   { "name"  : "Recommended Extensions",
     "pages" : [
-      { "file" : "export",      "name" : "Exportation",        "spec" : 1 },
+      { "file" : "imports",     "name" : "Importation",        "spec" : 1 },
+      { "file" : "exports",     "name" : "Exportation",        "spec" : 1 },
       { "file" : "plugins",     "name" : "Plugins",            "spec" : 1 }
     ]
   },
