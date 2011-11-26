@@ -2,6 +2,7 @@
   { "name"  : "Core Concepts",
     "pages" : [
       { "file" : "intro",       "name" : "Introduction",       "spec" : 1 },
+      { "file" : "namespaces",  "name" : "Namespaces",         "spec" : 1 },
       { "file" : "statements",  "name" : "Statements",         "spec" : 1 },
       { "file" : "blocks",      "name" : "Template Blocks",    "spec" : 1 },
       { "file" : "dicts",       "name" : "Dictionaries",       "spec" : 1 },
@@ -22,8 +23,9 @@
   { "name"  : "Customization and Extensions",
     "pages" : [
       { "file" : "syntax",      "name" : "Overriding Syntax",  "spec" : 1 },
+      { "file" : "globals",     "name" : "Global Variables",   "spec" : 1 },
       { "file" : "plugins",     "name" : "Plugins",            "spec" : 1 },
-      { "file" : "json",        "name" : "JSON Extension",     "spec" : 1 },
+      { "file" : "json",        "name" : "JSON Blocks",        "spec" : 1 },
       { "file" : "ideas",       "name" : "Future ideas",       "spec" : 0 }
     ]
   },

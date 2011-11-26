@@ -19,7 +19,10 @@ sub output_html {
 }
 
 my $pages = decode_json(slurp('./src/pages.json'));
+my $version = slurp('./VERSION');
 my $garden = Garden->new(paths=>['./src']);
+
+$garden->addGlobal('VERSION', $version); 
 
 say "Building table of contents.";
 my $tocpage = $garden->get('index');
@@ -38,5 +41,13 @@ for my $section (@{$pages}) {
     }
   }
 }
+
+say "Building single page version.";
+my $single = $garden->get('single_page/index');
+$garden->addGlobal('lookup', sub { return $_[0]."/content"; } );
+pop(@{$pages});
+my $single_html = $single->render(sections=>$pages);
+output_html('single_page', $single_html);
+
 say "Done building pages.";
 

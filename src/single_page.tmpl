@@ -1,0 +1,31 @@
+version 1
+
+import "index" :export
+global lookup
+
+## We're overriding the tableOfContents template from index.
+tableOfContents (sections) {{
+<ul>
+[[sections:sectionItem(*section)]]
+</ul>
+[[sections:sectionDiv(*section)]]
+}}
+
+## We're overriding the fileLink from index.
+fileLink (page) {{ <a href="#[[page.file]]">[[page.name]]</a> }}
+
+sectionDiv (section) {{
+<h2>[[section.name]]</h2>
+[[section.pages:pageDiv(*page)]]
+}}
+
+pageDiv (page) {{
+[[?page.file:specPage(page)]]
+}}
+
+specPage (page) {{
+<h3 name="[[page.file]]" id="[[page.file]]">[[page.name]]</h3>
+<h4>Added in version [[page.spec]]</h4>
+[[(lookup.(page.file))()]]
+}}
+
