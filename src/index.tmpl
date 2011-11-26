@@ -1,3 +1,5 @@
+version 1
+
 import "common"
 
 mypage {[
@@ -5,7 +7,8 @@ mypage {[
 ]}
 
 index (sections) {{
-[[Layout(title=mypage.name, content=tableOfContents(sections))]]
+[[::content=tableOfContents(sections)]]
+[[Layout(title=mypage.name, content)]]
 }}
 
 tableOfContents (sections) {{

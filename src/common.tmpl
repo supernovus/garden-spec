@@ -1,9 +1,13 @@
-## Attempts to use Page without export will fail.
+## Common stuff.
+version 1
 
+## Attempts to use Page without export will fail.
 Page (title) {{
-[[Layout(title, content=content())]]
+[[::content=content()]]
+[[Layout(title, content)]]
 }}
 
+## Layout can be used without export though.
 Layout (title, content) {{
 <html>
 <head>
@@ -14,7 +18,7 @@ Layout (title, content) {{
 <h1>Garden -- A Functional Template Language</h1>
 <h2>[[title]]</h2>
 [[content]]
-<p id="footer">
+<p id="footer"> 
 <a href="index.html">Table of Contents</a> |
 <a href="https://github.com/supernovus/garden-spec/">Source</a>
 </p>
