@@ -4,7 +4,7 @@
       { "file" : "intro",       "name" : "Introduction",       "spec" : 1 },
       { "file" : "namespaces",  "name" : "Namespaces",         "spec" : 1 },
       { "file" : "statements",  "name" : "Statements",         "spec" : 1 },
-      { "file" : "blocks",      "name" : "Template Blocks",    "spec" : 1 },
+      { "file" : "templates",   "name" : "Templates",          "spec" : 1 },
       { "file" : "dicts",       "name" : "Dictionaries",       "spec" : 1 },
       { "file" : "imports",     "name" : "Importation",        "spec" : 1 },
       { "file" : "exports",     "name" : "Exportation",        "spec" : 1 }
@@ -15,7 +15,7 @@
       { "file" : "vars",        "name" : "Variables",          "spec" : 1 },
       { "file" : "aliases",     "name" : "Local Aliases",      "spec" : 1 },
       { "file" : "methods",     "name" : "Method calls",       "spec" : 1 },
-      { "file" : "templates",   "name" : "Nested Templates",   "spec" : 1 },
+      { "file" : "nested",      "name" : "Nested Templates",   "spec" : 1 },
       { "file" : "apply",       "name" : "Applying Templates", "spec" : 1 },
       { "file" : "conditional", "name" : "Conditionals",       "spec" : 1 }
     ]

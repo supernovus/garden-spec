@@ -1,36 +1,36 @@
 version 1
 
-import "common"
+import "common" :syntax
 
 mypage {[
   "name" : "Table of Contents"
 ]}
 
 index (sections) {{
-[[::content=tableOfContents(sections)]]
-[[Layout(title=mypage.name, content)]]
+=[::content=tableOfContents(sections)]=
+=[Layout(title=mypage.name, content)]=
 }}
 
 tableOfContents (sections) {{
 <ul>
-[[sections:sectionItem(*section)]]
+=[sections:sectionItem(*section)]=
 </ul>
 }}
 
 sectionItem (section) {{
-<li>[[section.name]]
+<li>=[section.name]=
 <ul>
-[[section.pages:pageItem(*page)]]
+=[section.pages:pageItem(*page)]=
 </ul>
 </li>
 }}
 
 pageItem (page) {{
 <li>
-[[?page.file:fileLink(page);urlLink(page)]]
+=[?page.file:fileLink(page);urlLink(page)]=
 </li>
 }}
 
-fileLink (page) {{ <a href="[[page.file]].html" title="Since version [[page.spec]]">[[page.name]]</a> }}
-urlLink  (page) {{ <a href="[[page.link]]" title="[[page.desc]]">[[page.name]]</a> }}
+fileLink (page) {{ <a href="=[page.file]=.html">=[page.name]=</a> }}
+urlLink  (page) {{ <a href="=[page.link]=" title="=[page.desc]=">=[page.name]=</a> }}
 
