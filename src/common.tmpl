@@ -5,27 +5,66 @@ use globals
 
 global VERSION
 
-delimiters "=[", "]="
+delimiters "`", "`"
+note ";;;"
+comment "<--", "-->"
+
+syntax {[
+  "st" : "{{"
+  "et" : "}}"
+  "sd" : "{["
+  "ed" : "]}"
+  "ss" : "[["
+  "es" : "]]"
+  "sc" : "/*"
+  "ec" : "*/"
+  "note"  : "##"
+  "cond"  : "?"
+  "csep"  : ";"
+  "alias" : "::"
+  "asep"  : "="
+  "pos"   : "*"
+  "apply" : ":"
+  "neg"   : "!"
+]}
+
+## Syntax
+st () {{ <i class="s">`syntax.st`</i> }}
+et () {{ <i class="s">`syntax.et`</i> }}
+sd () {{ <i class="s">`syntax.sd`</i> }}
+ed () {{ <i class="s">`syntax.ed`</i> }}
+ss () {{ <i class="s">`syntax.ss`</i> }}
+es () {{ <i class="s">`syntax.es`</i> }}
+sc () {{ <i class="s">`syntax.sc`</i> }}
+ec () {{ <i class="s">`syntax.ec`</i> }}
+note  () {{ <i class="s">`syntax.note`</i>  }}
+cond  () {{ <i class="s">`syntax.cond`</i>  }}
+csep  () {{ <i class="s">`syntax.csep`</i>  }}
+alias () {{ <i class="s">`syntax.alias`</i> }}
+asep  () {{ <i class="s">`syntax.asep`</i>  }}
+pos   () {{ <i class="s">`syntax.pos`</i>   }}
+apply () {{ <i class="s">`syntax.apply`</i> }}
+neg   () {{ <i class="s">`syntax.neg`</i>   }}
 
 ## Attempts to use Page without export will fail.
 Page (title) {{
-=[::content=content()]=
-=[Layout(title, content)]=
+`::content=content()`
+`Layout(title, content)`
 }}
 
 ## Layout can be used without export though.
 Layout (title, content) {{
 <html>
 <head>
-<title>Garden: =[title]=</title>
+<title>Garden: `title`</title>
 <link rel="stylesheet" href="../style/main.css" />
 <link rel="stylesheet" href="../style/docs.css" />
 </head>
 <body>
 <h1>Garden -- A Functional Template Language</h1>
-<h2>=[VERSION]=</h2>
-<h2>=[title]=</h2>
-=[content]=
+<h2>`VERSION`</h2>
+<h2>`title`</h2>
+`content`
 <p id="footer"> 
 <a href="index.html">Table of Contents</a> |
 <a href="single_page.html">Single Page Version</a> |
@@ -33,5 +72,20 @@ Layout (title, content) {{
 </p>
 </body>
 </html>
+}}
+
+refOver () {{ See the Overriding Syntax section for more details. }}
+
+custTwo (start, end) {{
+<p class="note">
+The <i class="s">`start`</i> and <i class="s">`end`</i> symbols are
+customizable. `refOver()` 
+</p>
+}}
+
+custOne (symb) {{
+<p class="note">
+The <i class="s">`symb`</i> symbol is customizable. `refOver()`
+</p>
 }}
 

@@ -29,19 +29,16 @@ the namespace.)
 A template block is defined using the following syntax:
 </p>
 <code class="block">
-<i class="t">nameOfTemplate</i> (<i class="v">the</i>, <i class="v">parameters</i>, <i class="v">you</i>, <i class="v">require</i>) <i class="s">{{</i>
+<i class="t">nameOfTemplate</i> (<i class="v">the</i>, <i class="v">parameters</i>, <i class="v">you</i>, <i class="v">require</i>) `st()`
 The content of the template.
-<i class="s">}}</i>
+`et()`
 </code>
 <p>
-Everything past the <i class="s">{{</i> symbol is the content of your template.
+Everything past the `st()` symbol is the content of your template.
 It will be parsed for template statements (see the Template Language chapter.)
-The <i class="s">}}</i> symbol marks the end of the template block.
+The `et()` symbol marks the end of the template block.
 </p>
-<p class="note">
-The <i class="s">{{</i> and <i class="s">}}</i> symbols are customizable.
-See the Overriding Syntax section for more details.
-</p>
+`custTwo(start=syntax.st, end=syntax.et)`
 <p>
 If the template block is on a single line, the whitespace at the beginning
 and end of the block will be ignored, and no newline character will be put
@@ -49,7 +46,7 @@ at the end. Otherwise, it is assumed that all whitespace is to be preserved
 "as is", including the newline at the end of the block.
 </p>
 <code class="block">
-<i class="t">snippetBlock</i> () <i class="s">{{</i> Hello World <i class="s">}}</i>
+<i class="t">snippetBlock</i> () `st()` Hello World `et()`
 </code>
 
 <h4>Template Object</h4>
