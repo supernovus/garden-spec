@@ -6,6 +6,7 @@ use globals
 global VERSION
 
 delimiters "`", "`"
+indirect "[", "]"
 note ";;;"
 comment "<--", "-->"
 
@@ -18,37 +19,39 @@ syntax {[
   "es" : "]]"
   "sc" : "/*"
   "ec" : "*/"
+  "si" : "`"
+  "ei" : "`"
   "note"  : "##"
   "cond"  : "?"
   "csep"  : ";"
-  "alias" : "::"
-  "asep"  : "="
+  "alias" : "="
   "pos"   : "*"
   "apply" : ":"
   "neg"   : "!"
 ]}
 
 ## Syntax
-st () {{ <i class="s">`syntax.st`</i> }}
-et () {{ <i class="s">`syntax.et`</i> }}
-sd () {{ <i class="s">`syntax.sd`</i> }}
-ed () {{ <i class="s">`syntax.ed`</i> }}
-ss () {{ <i class="s">`syntax.ss`</i> }}
-es () {{ <i class="s">`syntax.es`</i> }}
-sc () {{ <i class="s">`syntax.sc`</i> }}
-ec () {{ <i class="s">`syntax.ec`</i> }}
-note  () {{ <i class="s">`syntax.note`</i>  }}
-cond  () {{ <i class="s">`syntax.cond`</i>  }}
-csep  () {{ <i class="s">`syntax.csep`</i>  }}
-alias () {{ <i class="s">`syntax.alias`</i> }}
-asep  () {{ <i class="s">`syntax.asep`</i>  }}
-pos   () {{ <i class="s">`syntax.pos`</i>   }}
-apply () {{ <i class="s">`syntax.apply`</i> }}
-neg   () {{ <i class="s">`syntax.neg`</i>   }}
+st () {{ <u>`syntax.st`</u> }}
+et () {{ <u>`syntax.et`</u> }}
+sd () {{ <u>`syntax.sd`</u> }}
+ed () {{ <u>`syntax.ed`</u> }}
+ss () {{ <u>`syntax.ss`</u> }}
+es () {{ <u>`syntax.es`</u> }}
+sc () {{ <u>`syntax.sc`</u> }}
+ec () {{ <u>`syntax.ec`</u> }}
+si () {{ <u>`syntax.si`</u> }}
+ei () {{ <u>`syntax.ei`</u> }}
+note  () {{ <u>`syntax.note`</u>  }}
+cond  () {{ <u>`syntax.cond`</u>  }}
+csep  () {{ <u>`syntax.csep`</u>  }}
+alias () {{ <u>`syntax.alias`</u> }}
+pos   () {{ <u>`syntax.pos`</u>   }}
+apply () {{ <u>`syntax.apply`</u> }}
+neg   () {{ <u>`syntax.neg`</u>   }}
 
 ## Attempts to use Page without export will fail.
 Page (title) {{
-`::content=content()`
+`content=content()`
 `Layout(title, content)`
 }}
 

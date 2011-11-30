@@ -2,7 +2,89 @@ import "common" :export
 
 content () {{
 <p>
-Describe conditional statements here.
+Often there are portions of your template that show only show up under
+certain circumstances. Many template languages have complex constructs
+for creating conditional sections, with tags like if, elseif, else, and
+all sorts of comparison operators. Garden takes a different approach.
+</p>
+<p>
+First of all, we don't have any comparison operators. It's conditional
+statements check for truth or falseness of a single variable.
+Your application controller should handle any special logic to create the
+variables for testing against.
+</p>
+<p>
+That said, Garden does support elseif and else statements, in its own way.
+</p>
+<p>
+First thing to note, like recursion, conditional statements work
+by calling (applying) a template based on the results of the condition.
+</p>
+
+<h4>A simple condition</h4>
+<p>
+The following shows a simple condition, which will call a template if
+the variable is true, and won't call the template if it is false.
+</p>
+<code class="block">
+`ask1()``temt()``es()`
+</code>
+<p>
+The context is simple, if `var()` is a true value, which
+means it's defined, not 0, and not equal to its own name (i.e. 
+`var()` will be false if it is returned as <em>vartotest</em>), then the
+`temt()` will be called. Like any other template call,
+you can pass whatever parameters you need to it.
+</p>
+`custTwo(start=syntax.cond, end=syntax.apply)`
+<h4>An else statement</h4>
+<p>
+Often not only do you want to apply a statement if the value is true, but
+you want to apply a different statement if the value is false.
+</p>
+<code class="block">
+`ask1()``temt()``csep()``temf()``es()`
+</code>
+<p>
+So like the first example, we test to see if `var()` is true. If it is,
+like before, we show `temt()`. The difference is, this time if it is not
+true, we show `temf()` instead.
+</p>
+`custOne(symb=syntax.csep)`
+<h4>An elseif statement</h4>
+<p>
+Sometimes you want to test two different variables, if the first is true,
+apply a template, if not, then if the second is true, apply a template.
+If neither are true, then if we have an third template, apply it instead.
+</p>
+<code class="block">
+`ask2()``tem1()``csep()``tem2()``csep()``temf()``es()`
+</code>
+<p>
+If `var1()` is true, we apply `tem1()`. Otherwise, if `var2()` is true
+we apply `tem2()`. Finally, if neither are true, we apply `temf()`.
+You can leave off the final template if you don't want anything to be
+applied in the case that none of the variables are true. You can put as many
+variables as you want between the separator (`csep()`), as long as you have
+at least that many templates after the apply symbol (`apply()`). You can always
+supply one extra template to be used if none of the variables are true.
+</p>
+<p class="note">
+This version of Garden has no support for comparison operators. In a future
+version, I may add an extension to allow something that allows a limited
+form of chained comparison operators into the template language itself.
+What form it will take is yet undecided.
 </p>
 }}
+
+ask () {{ `ss()``cond()` }}
+var () {{ <i class="v">vartotest</i> }}
+var1 () {{ <i class="v">var1</i> }}
+var2 () {{ <i class="v">var2</i> }}
+ask1 () {{ `ask()``var()``apply()` }}
+ask2 () {{ `ask()``var1()``csep()``var2()``apply()` }}
+temt () {{ <i class="t">trueTemplate()</i> }}
+temf () {{ <i class="t">falseTemplate()</i> }}
+tem1 () {{ <i class="t">templateOne()</i> }}
+tem2 () {{ <i class="t">templateTwo()</i> }}
 

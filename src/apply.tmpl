@@ -2,7 +2,126 @@ import "common" :export
 
 content () {{
 <p>
-Describe template application (recursion) here.
+Most template languages support looping constructs similar to programming
+languages. These looping constructs are used to apply sections of the
+template to every item in a list.
+</p>
+<p>
+In Garden, instead of specifying a block of your template as the portion to
+be recursed over, we specify another template to apply to the list, as well
+as the positional parameter(s) that each item in the list will be assigned to.
+How many parameters depends on if the variable is a flat list (array) or
+a map (hash).
+</p>
+<p>
+As an example of applying a template to a simple flat list of user items:
+</p>
+<code class="block">
+<i class="t">testTemplate</i> (<i class="v">userlist</i>) `st()`
+Okay, we have the following users:
+`ss()`<i class="v">userlist</i>`apply()`<i class="t">userItem</i>(`pos()`<i class="v">user</i>)`es()`
+`et()`
+
+<i class="t">userItem</i> (<i class="v">user</i>) `st()`
+ * `ss()`<i class="v">user.name</i>`es()`
+`et()`
+</code>
+`custTwo(start=syntax.apply, end=syntax.pos)`
+<p>
+Alternatively, say instead of the flat list of user items, you had a map/hash
+where the key was the username, and the value was their real name. In that
+case you could apply a template like this:
+</p>
+<code class="block">
+<i class="t">hashTest</i> (<i class="v">userhash</i>) `st()`
+We have the following users:
+`ss()`<i class="v">userhash</i>`apply()`<i class="t">userList</i>(`pos()`<i class="v">id</i>, `pos()`<i class="v">name</i>)`es()`
+`et()`
+
+<i class="t">userList</i> (<i class="v">id</i>, <i class="v">name</i>) `st()`
+ * `ss()`<i class="v">id</i>`es()`: `ss()`<i class="v">name</i>`es()`
+`et()`
+</code>
+<p>
+Additional parameters can be sent in the template call, by using the standard
+parameter passing syntax. Only the special positional parameters use the
+`pos()` prefix. Flat lists (arrays) require one positional parameter.
+Maps (hashes) require one positional parameter, and support two parameters:
+the first will be assigned to the key, and the second to the value.
+</p>
+<h4>Separator</h4>
+<p>
+As seen previously in the Variables section, if you want a specific separator
+between the items, you can specify a <i class="f">sep</i> option.
+</p>
+<code class="block">
+`ss()`<i class="v">users</i>`apply()`<i class="t">userList</i>(`pos()`<i class="v">user</i>); <i class="f">sep</i>=", "`es()`
+</code>
+<h4>The Repeat Object</h4>
+<p>
+One magic feature now shown yet, is the repeat object that is created
+automatically when you use template application. The repeat object is
+always created with the same name as the template it applies to. It offers
+the following members:
+</p>
+<dl>
+`repA(a=index)`
+<dd>The current iteration number (starts from 0)</dd>
+`repA(a=count)`
+<dd>The number of items in the list we are recursing</dd>
+`repA(a=length)`
+<dd>An alias to count.</dd>
+`repA(a=number)`
+<dd>The current item number (starts from 1). This will always be
+the same as <i class="v">index</i> + 1.</dd>
+`repA(a=start)`
+<dd>Returns true if this is the first item.</dd>
+`repA(a=end)`
+<dd>Returns true if this is the last item.</dd>
+`repA(a=odd)`
+<dd>Returns true if the `number()` is odd.</dd>
+`repA(a=even)`
+<dd>Returns true if the `number()` is even.</dd>
+`repM(m=every)`
+<dd>Returns true every `num()` number of iterations.</dd>
+`repM(m=skip)`
+<dd>Returns false every `num()` number of iterations.</dd>
+`repM(m=lt)`
+<dd>Returns true if `number()` is less than `num()`</dd>
+`repM(m=gt)`
+<dd>Returns true if `number()` is greater than `num()`</dd>
+`repM(m=lte)`
+<dd>Returns true if `number()` is less than or equal to `num()`</dd>
+`repM(m=gte)`
+<dd>Returns true if `number()` is greater than or equal to `num()`</dd>
+`repM(m=eq)`
+<dd>Returns true if `number()` is equal to `num()`</dd>
+`repM(m=ne)`
+<dd>Returns true if `number()` is not equal to `num()`</dd>
+`repM(m=repeatEvery)`
+<dd>Returns true on the first item, and every `num()` iterations.</dd>
+</dl>
+<p>
+A simple example of the use of the repeat object:
+</p>
+<code class="block">
+<i class="t">myTemplate</i> (<i class="v">rows</i>) `st()`
+`ss()`<i class="v">rows</i>`apply()`<i class="t">showRow</i>(`pos()`<i class="v">row</i>)`es()`
+`et()`
+
+<i class="t">showRow</i> (<i class="v">row</i>) `st()`
+ `ss()`<i class="v">showRow.number</i>`es()`.) `ss()`<i class="v">row</i>`es()`
+`et()`
+</code>
+<p>
+See the Conditionals section for an example of how to use some of the
+repeat object's members that return boolean values.
 </p>
 }}
+
+repA (a) {{ <dt><i class="v">`a`</i></dt> }}
+repM (m) {{ <dt><i class="v">`m`</i>(`num()`)</dt> }}
+
+num () {{ <i class="v">num</i> }}
+number() {{ <i class="v">number</i> }}
 

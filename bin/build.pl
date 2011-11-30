@@ -24,14 +24,20 @@ my $garden = Garden->new(paths=>['./src']);
 
 $garden->addGlobal('VERSION', $version); 
 
-say "Building table of contents.";
-my $tocpage = $garden->get('index');
-my $tochtml = $tocpage->render(sections=>$pages);
-output_html('index', $tochtml);
+my $only; ## If this is set we only build this page.
+if (@ARGV) { $only = $ARGV[0]; }
+
+if (!defined $only) {
+  say "Building table of contents.";
+  my $tocpage = $garden->get('index');
+  my $tochtml = $tocpage->render(sections=>$pages);
+  output_html('index', $tochtml);
+}
 
 for my $section (@{$pages}) {
   for my $page (@{$section->{pages}}) {
     if (exists $page->{file}) {
+      if (defined $only && $only ne $page->{file}) { next; }
   	  say "Building " . $page->{file} . '.';
     	my $tempname = $page->{file} . "/Page";
       my $title = $page->{name};

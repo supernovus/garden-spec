@@ -2,7 +2,32 @@ import "common" :export
 
 content () {{
 <p>
-Describe local variable aliases here.
+Sometimes you'll want to make local variables that apply to your current
+template, to make it easy to refer to what otherwise could be a long
+nested variable expression. This is simple using aliases.
 </p>
+<code class="block">
+`ss()`<i class="v">aliasname</i>`alias()`<i class="v">some.large</i>.`si()`nested`ei()`.statement(param)`es()`
+Okay, now we're going to refer to the `ss()`<i class="v">aliasname</i>`es()`
+variable from now on.
+</code>
+<p>
+By assigning a local alias variable to a long expression, it makes it easy to
+reuse elsewhere.
+</p>
+<p>
+The above example showed assigning an alias to a nested variable expression,
+but it is also possible to assign an alias to the output of a template:
+</p>
+<code class="block">
+`ss()`<i class="v">content</i>`alias()`<i class="t">myTemplate()</i>`es()`
+Now <i class="v">content</i> contains the output from the
+<i class="t">myTemplate</i> template.
+</code>
+<p>
+See the Nested Templates section for more information on how to make
+template calls.
+</p>
+`custOne(symb=syntax.alias)`
 }}
 

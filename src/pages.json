@@ -14,9 +14,8 @@
     "pages" : [
       { "file" : "vars",        "name" : "Variables"           },
       { "file" : "aliases",     "name" : "Local Aliases"       },
-      { "file" : "methods",     "name" : "Method calls"        },
       { "file" : "nested",      "name" : "Nested Templates"    },
-      { "file" : "apply",       "name" : "Applying Templates"  },
+      { "file" : "apply",       "name" : "Recursive Templates"  },
       { "file" : "conditional", "name" : "Conditionals"        },
       { "file" : "comments",    "name" : "Comments"            }
     ]
