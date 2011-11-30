@@ -2,7 +2,190 @@ import "common" :export
 
 content () {{
 <p>
-Describe how to customize the syntax here.
+So, in all of the documentation up to now, you've probably seen notes
+saying that certain symbols are overridable. This is to make it so that
+your templates can customize what characters are considered <em>syntax</em>
+versus <em>content</em>. The default have been designed to be fairly 
+non-conflicting with most markup languages, but I can't claim to forsee every
+possible use of Garden, so making it as flexible as possible was a primary
+design principle.
 </p>
+
+<h4>Template Block Markers</h4>
+<p>
+The <code class="b">block</code> statement is used to override
+the `st()` and `et()` symbols:
+</p>
+<code class="block">
+<b>block</b> "`cst()`", "`cet()`"
+
+<i class="t">myTemplate</i> (name) `cst()`
+Hello `ss()`name`es()`
+`cet()`
+</code>
+
+<h4>Dictionary Block Markers</h4>
+<p>
+The <code class="b">dictblock</code> statement is used to override
+the `sd()` and `ed()` symbols:
+</p>
+<code class="block">
+<b>dictblock</b> "`csd()`", "`ced()`"
+
+<i class="d">myDict</i> `csd()`
+ "<i>name</i>" : "Tim"
+ "<i>job</i>"  : "Programmer"
+`ced()`
+</code>
+
+<h4>Template Statements Markers</h4>
+<p>
+The <code class="b">delimiters</code> statement is used to override 
+the `ss()` and `es()` symbols:
+</p>
+<code class="block">
+<b>delimiters</b> "`css()`", "`ces()`"
+
+<i class="t">myTemplate</i> (name) `st()`
+Hello `css()`name`ces()`
+`et()`
+</code>
+
+<h4>Note Symbol</h4>
+<p>
+The <code class="b">note</code> statement is used to override
+the `note()` symbol:
+</p>
+<code class="block">
+<b>note</b> "`cnote()`"
+
+<i class="t">myTemplate</i> () `st()`
+Hello World `cnote()` This is a note-style comment.
+`et()`
+</code>
+
+<h4>Comment Block Markers</h4>
+<p>
+The <code class="b">comment</code> statement is used to override
+the `sc()` and `ec()` symbols:
+</p>
+<code class="block">
+<b>comment</b> "`csc()`", "`cec()`"
+
+<i class="t">myTemplate</i> () `st()`
+`csc()` <tt>This is a long
+multilined comment
+that goes on for a while.</tt> `cec()`
+Hello World
+`et()`
+</code>
+
+<h4>The Apply Symbol</h4>
+<p>
+The apply symbol ( `apply()` ) is used both in conditional statement, and in
+recursive template application. The <code class="b">apply</code> statement
+is used to override it:
+</p>
+<code class="block">
+<b>apply</b> "`capply()`"
+
+<i class="t">myTemplate</i> (alist) `st()`
+The list:
+`ss()`alist`capply()`listTemplate(*item)`es()`
+`et()`
+</code>
+
+<h4>Conditional statement marker and separator</h4>
+<p>
+In conditional statements, there are three symbols used, the
+conditional marker: ( `cond()` ), the separator for conditions and templates: 
+( `csep()` ), and the apply symbol: ( `apply()` ). We've already seen how
+to override the apply symbol, so we're going to skip it in this example.
+The <code class="b">condition</code> statement allows you to override
+the first two:
+</p>
+<code class="block">
+<b>condition</b> "`ccond()`" "`ccsep()`"
+
+<i class="t">myTemplate</i> (<i class="v">yes</i>, <i class="v">maybe</i>) `st()`
+Are we ready? `ss()``ccond()`<i class="v">yes</i>`ccsep()`<i class="v">maybe</i>`apply()`<i class="t">yesTemplate()</i>`ccsep()`<i class="t">maybeTemplate()</i>`ccsep()`<i class="t">noTemplate()</i>`es()`
+`et()`
+</code>
+
+<h4>Alias Symbol</h4>
+<p>
+The <code class="b">alias</code> statement is used to override
+the alias symbol ( `alias()` ):
+</p>
+<code class="block">
+<b>alias</b> "`calias()`"
+
+`tmpl(myTemplate)` (`var(obj)`) `st()`
+`ss()``var(var)``calias()`<i class="v">obj.nested.member</i>`es()`
+Hello `ss()``var(var)``es()`
+`et()`
+</code>
+
+<h4>Recursive Positional Parameters</h4>
+<p>
+The special recursive parameters all start with the ( `pos()` ) prefix.
+This can be override using the `stmt(positional)` statement:
+</p>
+<code class="block">
+<b>positional</b> "`cpos()`"
+
+`tmpl(myTemplate)` (`var(myarray)`) `st()`
+List:
+`ss()``var(myarray)``apply()``tmpl(listItem)`(`cpos()``var(item)`)`es()`
+`et()`
+
+`tmpl(listItem)` (`var(item)`) `st()`
+* `ss()``var(item)``es()`
+`et()`
+</code>
+
+<h4>Condition Negation Prefix</h4>
+<p>
+To negate a condition in a conditional statement, you use the negation
+prefix ( `neg()` ). This can be overriden using the `stmt(negate)`
+statement:
+</p>
+<code class="block">
+<b>negate</b> "`cneg()`"
+
+`tmpl(myTemplate)` (`var(mytest)`) `st()`
+`ss()``cond()``cneg()``var(mytest)``apply()``tmpl(falseTemplate)``csep()``tmpl(trueTemplate)``es()`
+`et()`
+</code>
+
+<h4>Other Overrides</h4>
+<p>
+Extensions may add additional override statements. They will be listed
+in the description of the extension, and are only available if you use
+the extension.
+</p>
+
 }}
+
+cst () {{ <u>&lt;&lt;&lt;</u> }}
+cet () {{ <u>&gt;&gt;&gt;</u> }}
+csd () {{ <u>[[[</u> }}
+ced () {{ <u>]]]</u> }}
+css () {{ <u>$</u> }}
+ces () {{ <u>$</u> }}
+csc () {{ <u>&lt;--</u> }}
+cec () {{ <u>--&gt;</u> }}
+
+cnote () {{ <u>//</u> }}
+
+capply () {{ <u>-&gt;</u> }}
+
+ccond () {{ <u>if </u> }}
+ccsep () {{ <u>|</u>   }}
+
+calias () {{ <u>@</u> }}
+
+cpos () {{ <u>&amp;</u> }}
+
+cneg () {{ <u>-</u> }}
 

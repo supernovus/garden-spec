@@ -2,7 +2,45 @@ import "common" :export
 
 content () {{
 <p>
-Describe how comments and notes work here.
+The ability to make notes in your templates, either for documentation
+or to add a private TODO note for yourself, is very useful.
+Sometimes you even want to be able to comment out an entire section of your
+template while testing things. Both of these abilities are possible in
+Garden, with a configurable syntax too boot.
 </p>
+<p class="note">
+All of the comment related syntax below applies inside template and
+dictionary blocks.
+You can use them outside of blocks, but it's not really necessary, as
+any text outside a block that isn't a statement, or a block definition,
+is ignored.
+</p>
+<h4>Notes</h4>
+<p>
+A note is a quick comment, that ends with a newline character.
+In Garden, the note prefix must either be the first character of the
+line, or have white space in front of it to be recognized.
+</p>
+<code class="block">
+<i class="t">myTemplate</i> () `st()`
+Hello World `note()` <tt>Everything after the `note()` marks is a note comment.</tt>
+`note()` <tt>This line in its entirety is a note comment.</tt>
+This is not a comment.
+`et()`
+</code>
+`custOne(symb=syntax.note)`
+<h4>Comment Blocks</h4>
+<p>
+If you want to comment out an entire block, you can do so with special
+comment symbols:
+</p>
+<code class="block">
+<i class="t">myTemplate</i> () `st()`
+Hello `sc()` <tt>Everything past that symbol is a comment.
+Including this line.
+And this text.</tt> `ec()` World. (This is not a comment.)
+`et()`
+</code>
+`custTwo(start=syntax.sc, end=syntax.ec)`
 }}
 
