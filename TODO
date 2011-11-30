@@ -1,2 +1,10 @@
-* Write the Extension specs.
-* Clean up specs to use newer template methods introduced during writing.
+Version 1
+-----------
+ * Re-read and correct any mistakes prior to final release.
+
+Version 2
+-----------
+ * Clean up specs to use newer template methods introduced during writing.
+ * Write up specs for the "definite" items in the Future ideas section.
+ * Write up specs for any other items we decided to include in version 2.
+

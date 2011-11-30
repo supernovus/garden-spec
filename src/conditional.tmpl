@@ -30,9 +30,9 @@ the variable is true, and won't call the template if it is false.
 `ask1()``temt()``es()`
 </code>
 <p>
-The context is simple, if `var()` is a true value, which
+The context is simple, if `varx()` is a true value, which
 means it's defined, not 0, and not equal to its own name (i.e. 
-`var()` will be false if it is returned as <em>vartotest</em>), then the
+`varx()` will be false if it is returned as <em>vartotest</em>), then the
 `temt()` will be called. Like any other template call,
 you can pass whatever parameters you need to it.
 </p>
@@ -46,7 +46,7 @@ you want to apply a different statement if the value is false.
 `ask1()``temt()``csep()``temf()``es()`
 </code>
 <p>
-So like the first example, we test to see if `var()` is true. If it is,
+So like the first example, we test to see if `varx()` is true. If it is,
 like before, we show `temt()`. The difference is, this time if it is not
 true, we show `temf()` instead.
 </p>
@@ -104,10 +104,10 @@ If I add it, and what form it will take is yet undecided.
 }}
 
 ask () {{ `ss()``cond()` }}
-var () {{ <i class="v">vartotest</i> }}
+varx () {{ <i class="v">vartotest</i> }}
 var1 () {{ <i class="v">var1</i> }}
 var2 () {{ <i class="v">var2</i> }}
-ask1 () {{ `ask()``var()``apply()` }}
+ask1 () {{ `ask()``varx()``apply()` }}
 ask2 () {{ `ask()``var1()``csep()``var2()``apply()` }}
 ask3 () {{ `ask()``var1()``csep()``neg()``var2()``apply()` }}
 temt () {{ <i class="t">trueTemplate()</i> }}

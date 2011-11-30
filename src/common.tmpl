@@ -21,6 +21,8 @@ syntax {[
   "ec" : "*/"
   "si" : "`"
   "ei" : "`"
+  "sj" : "{<"
+  "ej" : ">}"
   "note"  : "##"
   "cond"  : "?"
   "csep"  : ";"
@@ -41,6 +43,8 @@ sc () {{ <u>`syntax.sc`</u> }}
 ec () {{ <u>`syntax.ec`</u> }}
 si () {{ <u>`syntax.si`</u> }}
 ei () {{ <u>`syntax.ei`</u> }}
+sj () {{ <u>`syntax.sj`</u> }}
+ej () {{ <u>`syntax.ej`</u> }}
 note  () {{ <u>`syntax.note`</u>  }}
 cond  () {{ <u>`syntax.cond`</u>  }}
 csep  () {{ <u>`syntax.csep`</u>  }}
