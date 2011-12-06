@@ -60,7 +60,8 @@ Read the spec for full details.
 
 This repository contains the Garden template files used to build the spec, 
 and the script used to compile the source into HTML. The script requires the 
-Perl 5 implementation of Garden to function.
+Perl 5 implementation of Garden to function, as well as the JSON and
+DateTime libraries.
 
 For a pre-compiled web page version of the specification, see:
 
