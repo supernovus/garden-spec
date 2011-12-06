@@ -1,10 +1,42 @@
-Version 1
------------
- * Re-read and correct any mistakes prior to final release.
-
 Version 2
 -----------
+
+ * New method for block types.
+   dict MyDict {{ ... }} replaces MyDict {[ ... ]}
+   json MyStruct {{ ... }}} replaces MyStruct {< ... >}
+ * The "dictblock" and "json" syntax override statements are deprecated.
+ * Plugins extension is removed. Plugins are better handled as Globals.
+ * Globals are now a core feature. The "use globals" statement is
+   not required (but won't cause any problems if you use it.)
+ * Notes are disabled by default in the Version 2 profile.
+   If "version 1" or no version statement is found, notes will be enabled
+   as previously.
+   If "version 2" is declared, then notes are disabled unless the
+   "note" statement has been used to set a note delimiter.
+ * Globals can be used in include and import statements.
+ * Blocks can have options.
+   blocktype BlockName (signature) :option1 :option2(param1,param2) {{ }}
+   Where "blocktype" is a recognized block type:
+   - tmpl           A template block. (Default if no blocktype is specified.)
+   - dict           A key/value dictionary.
+   - json           A JSON block (if supported.)
+   The (signature) is optional, and is ignored on dict and json blocks.
+   Implementations and applications can add other block types, which will
+   be parsed using external parsers. Any unknown or un-handled block type 
+   will throw an error.
+ * Add :strip to totally strip leading and following whitespace.
+ * Add :fold is the same as above, but newlines become a single space.
+ * Add a "local only" statement which disables the ability to reference
+   templates and objects from other namespaces.
+ * Add a way to reference dicts and/or other objects from other namespaces.
+ * Flexible export rules (see the Future Ideas for the general concept.)
+ * Conditional Test Helper Object (see Future Ideas.)
+   use test "t"
+   [[both=t.and(this, that)]]
+   [[?both:bothAreTrue()]]
+   Possibly support the negation operator? Otherwise a .not() function.
+ * Expand the alias functionality to allow the creation of simple arrays.
+   [[items=first.object, second.object, third.object]]
+
  * Clean up specs to use newer template methods introduced during writing.
- * Write up specs for the "definite" items in the Future ideas section.
- * Write up specs for any other items we decided to include in version 2.
 
